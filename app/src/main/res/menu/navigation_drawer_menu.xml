@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/profile"
+        android:checkable="true"
+        android:checked="true"
+        android:title="Profile" />
+    <item
+        android:id="@+id/jobrec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/job_search"
+        android:checkable="true"
+        android:title="Job Recommendation" />
+    <item
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:icon="@drawable/test_exam"
+        android:title="Assessments" />
+    <item
+        android:id="@+id/res"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:icon="@drawable/resume_7"
+        android:title="Resume Wizard" />
+    <item
+        android:id="@+id/community"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:icon="@drawable/community_group_leader_2"
+        android:title="Discussion" />
+    <item
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+
+        android:title="Logout" />
+
+</menu>

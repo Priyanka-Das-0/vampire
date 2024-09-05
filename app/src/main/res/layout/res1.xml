@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="35dp"
+        android:textColorHint="@color/hint"
+        android:text="Complete your Profile"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <EditText
+        android:id="@+id/cgpa"
+        android:layout_width="307dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="37dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/border"
+        android:hint="CGPA"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:layout_gravity="center"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="13dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint"
+        android:textSize="13sp"
+        android:visibility="visible"
+        />
+
+    <EditText
+        android:id="@+id/year"
+        android:layout_width="307dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="37dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/border"
+        android:hint="Year of Passing"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="13dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint"
+        android:textSize="13sp"
+        android:visibility="visible" />
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/buttonSubmit"
+            android:layout_width="307dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:hint="Skills..."
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint"
+            android:textSize="13sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/resume"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/role"
+            app:layout_constraintVertical_bias="0.339" />
+
+        <ImageView
+            android:id="@+id/addBtn"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:contentDescription="TODO"
+            android:elevation="10dp"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.707"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/internship"
+            android:layout_width="307dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:hint="Internships"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint"
+            android:textSize="13sp"
+            android:textStyle="bold|italic"
+          />
+
+        <ImageView
+            android:id="@+id/addBtn1"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:contentDescription="TODO"
+            android:elevation="10dp"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.707"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/project"
+        android:layout_width="307dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:hint="Projects"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint"
+        android:textSize="13sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/resume"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/role"
+        app:layout_constraintVertical_bias="0.339" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/projectlink"
+            android:layout_width="307dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:hint="Project Link"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint"
+            android:textSize="13sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/resume"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/role"
+            app:layout_constraintVertical_bias="0.339" />
+
+        <ImageView
+            android:id="@+id/addBtn2"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:contentDescription="TODO"
+            android:elevation="10dp"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.707"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="37dp"
+        android:layout_marginBottom="16dp"
+        android:text="Next"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="144dp" />
+
+</LinearLayout>
+

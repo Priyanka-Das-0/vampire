@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="900dp"
+
+    android:background="@drawable/bg"
+    android:rotationX="0"
+    tools:context=".SignUp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="20dp"
+
+        android:layout_marginBottom="30dp"
+        android:paddingLeft="13dp"
+        android:text="Sign In"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+    <EditText
+        android:id="@+id/edt_em"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/edt_background"
+        android:hint="Email"
+        android:paddingLeft="13dp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edt_pass"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/edt_em"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/edt_background"
+        android:hint="Password"
+        android:paddingLeft="13dp"
+        android:textColor="@color/black"
+
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/forget"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/edt_pass"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="right"
+        android:text="Forget Password?"
+        android:textSize="15sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/btnSignin"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/forget"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+
+        android:background="@drawable/btn_background"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/notreg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/btnSignin"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:paddingLeft="13dp"
+        android:text="Not registered yet? Sign up"
+        android:textSize="15sp"
+        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-268dp"
+        android:layout_marginTop="-146dp"
+        android:layout_marginBottom="400dp"
+        android:rotationX="-39"
+        app:srcCompat="@drawable/d3" />
+</RelativeLayout>

@@ -1,0 +1,210 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@android:color/white">
+
+        <!-- Profile Name and Summary -->
+        <TextView
+            android:id="@+id/tvProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:paddingBottom="8dp" />
+
+
+        <!-- Contact Info and Other Details in 2 Columns -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- First Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Contact Info Header -->
+                <TextView
+                    android:id="@+id/tvContactInfoHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GET IN CONTACT"
+                    android:textStyle="bold"
+
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/tvContactPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile: +91-123456789"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvContactEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email: nikhiltest@gmail.com"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:paddingBottom="16dp" />
+
+                <!-- Skills Header -->
+                <TextView
+                    android:id="@+id/tvSkillsHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SKILLS"
+                    android:textStyle="bold"
+
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/tvSkillsDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Organization Skills\n• Software Engineering\n• Machine Learning"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="16dp" />
+
+            </LinearLayout>
+
+            <!-- Second Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Education Header -->
+                <TextView
+                    android:id="@+id/tvEducationHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EDUCATION HISTORY"
+                    android:textStyle="bold"
+
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/tvEducationDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B.Sc(Computers)\nDelhi University, 2020\nGrade: 7/10"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:paddingBottom="16dp" />
+
+                <!-- Internship Header -->
+                <TextView
+                    android:id="@+id/tvInternshipHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INTERNSHIPS"
+                    android:textStyle="bold"
+
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/tvInternshipDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TCS, 12 Months\nAutomation  Manual Testing"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:paddingBottom="16dp" />
+
+        <!-- Projects Header -->
+        <TextView
+            android:id="@+id/tvProjectsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PROJECTS"
+            android:textStyle="bold"
+
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvProjectsDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Pet Business Marketing Campaign (26 months)"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:paddingBottom="16dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:paddingBottom="16dp" />
+
+        <!-- Badges Header -->
+        <TextView
+            android:id="@+id/tvBadgesHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BADGES"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvBadgesDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Vampire Badge (2nd position)"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:paddingBottom="16dp" />
+
+    </LinearLayout>
+</ScrollView>

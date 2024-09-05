@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Vampire</string>
+    <string name="create_your_account">Create Your Account</string>
+    <string name="experience_in_years">Experience(in years)</string>
+    <string name="worked_as_optional">Worked as(optional)</string>
+    <string name="add_your_skills">Add your Skills:</string>
+    <string name="add_input">Add Input</string>
+    <string name="submit">Submit</string>
+    <string name="cgpa">CGPA</string>
+    <string name="add_your_institute_name">Add your institute name</string>
+    <string name="click_to_upload_resume">Click to upload Resume</string>
+</resources>
