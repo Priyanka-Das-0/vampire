@@ -114,14 +114,37 @@
                     android:paddingBottom="8dp" />
 
                 <TextView
-                    android:id="@+id/tvEducationDetails"
+                    android:id="@+id/tvEdu1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="B.Sc(Computers)\nDelhi University, 2020\nGrade: 7/10"
                     android:textSize="14sp"
                     android:textColor="@android:color/black"
                     android:paddingBottom="16dp" />
-
+                <TextView
+                    android:id="@+id/tvEdu2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B.Sc(Computers)\nDelhi University, 2020\nGrade: 7/10"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="16dp" />
+                <TextView
+                    android:id="@+id/tvEdu3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B.Sc(Computers)\nDelhi University, 2020\nGrade: 7/10"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="16dp" />
+                <TextView
+                    android:id="@+id/tvEdu4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B.Sc(Computers)\nDelhi University, 2020\nGrade: 7/10"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="16dp" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

@@ -14,7 +14,7 @@ import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.beready.MessageAdapter
+
 import com.example.beready.R
 import com.example.beready.community.Message
 import com.example.beready.homepage
@@ -40,14 +40,23 @@ class Com : AppCompatActivity(), View.OnClickListener {
         setContentView(com.example.beready.R.layout.com)
 
         // Enable the back button in the toolbar
-       // supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initializeComponents()
 
         // Handle the back button using the OnBackPressedDispatcher
-        onBackPressedDispatcher.addCallback(this) {
-            finish()
+        val onBackPressed = object : OnBackPressedCallback(true) {
+            @OptIn(ExperimentalBadgeUtils::class)
+            override fun handleOnBackPressed() {
+                // Optional: You might want to finish the current activity
+                // so that it doesn't remain in the back stack
+                finish()
+
+                // Navigate to the desired activity
+                startActivity(Intent(this@Com, homepage::class.java))
+            }
         }
+        onBackPressedDispatcher.addCallback(this, onBackPressed)
     }
 
     private fun initializeComponents() {
@@ -158,7 +167,7 @@ class Com : AppCompatActivity(), View.OnClickListener {
     @OptIn(ExperimentalBadgeUtils::class)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-          R.id.back -> {
+            R.id.back -> {
                 startActivity(Intent(this@Com, homepage::class.java))
                 true
             }

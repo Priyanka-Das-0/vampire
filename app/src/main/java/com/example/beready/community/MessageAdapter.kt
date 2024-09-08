@@ -1,4 +1,5 @@
-package com.example.beready
+
+package com.example.beready.community
 
 import android.content.Context
 import android.graphics.Color
@@ -9,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.beready.R
 import com.example.beready.community.AllMethods
 import com.example.beready.community.Message
 import com.google.firebase.database.DatabaseReference
@@ -28,12 +30,15 @@ class MessageAdapter(
         val message = messages[position]
 
         if (message?.name == AllMethods.name) {
-            holder.tvTitle.text = "You: ${message?.message}"
+            if (message != null) {
+                holder.tvTitle.text = "You: ${message.message}"
+            }
             holder.tvTitle.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
             holder.itemView.setBackgroundColor(Color.parseColor("#EF9E73"))
+            holder.ibDelete.visibility = View.VISIBLE  // Show delete button for the user's messages
         } else {
             holder.tvTitle.text = "${message?.name}: ${message?.message}"
-            holder.ibDelete.visibility = View.GONE
+            holder.ibDelete.visibility = View.GONE  // Hide delete button for others' messages
         }
     }
 

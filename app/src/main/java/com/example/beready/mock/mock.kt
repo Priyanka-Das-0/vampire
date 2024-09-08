@@ -1,4 +1,4 @@
-package com.example.beready.quiz
+package com.example.beready.mock
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.OptIn
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.beready.databinding.ActivityMockBinding
 import com.example.beready.databinding.ActivityQuizzBinding
 import com.example.beready.homepage
 import com.google.android.material.badge.ExperimentalBadgeUtils
@@ -19,14 +20,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class quiz : AppCompatActivity() {
-    lateinit var binding: ActivityQuizzBinding
-    lateinit var quizModelList: MutableList<QuizModel>
-    lateinit var adapter: QuizListAdapter
+class mock : AppCompatActivity() {
+    lateinit var binding: ActivityMockBinding
+    lateinit var quizModelList: MutableList<mockModel>
+    lateinit var adapter: mockListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityQuizzBinding.inflate(layoutInflater)
+        binding = ActivityMockBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         quizModelList = mutableListOf()
@@ -39,28 +40,28 @@ class quiz : AppCompatActivity() {
                 finish()
 
                 // Navigate to the desired activity
-                startActivity(Intent(this@quiz, homepage::class.java))
+                startActivity(Intent(this@mock, homepage::class.java))
             }
         }
     }
 
     private fun setupRecyclerView() {
-        binding.progressBar.visibility = View.GONE
-        adapter = QuizListAdapter(quizModelList)
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = adapter
+        binding.mprogressBar.visibility = View.GONE
+        adapter = mockListAdapter(quizModelList)
+        binding.mrecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.mrecyclerView.adapter = adapter
     }
 
     private fun getDataFromFirebase() {
-        binding.progressBar.visibility = View.VISIBLE
+        binding.mprogressBar.visibility = View.VISIBLE
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val dataSnapshot = FirebaseDatabase.getInstance().getReference("quizzes").get().await()
+                val dataSnapshot = FirebaseDatabase.getInstance().getReference("Mock/Mock").get().await()
                 withContext(Dispatchers.Main) {
                     if (dataSnapshot.exists()) {
                         for (snapshot in dataSnapshot.children) {
-                            val quizModel = snapshot.getValue(QuizModel::class.java)
+                            val quizModel = snapshot.getValue(mockModel::class.java)
                             if (quizModel != null) {
                                 quizModelList.add(quizModel)
 
@@ -73,7 +74,7 @@ class quiz : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.e("Firebase", "Error fetching data", e)
                 withContext(Dispatchers.Main) {
-                    binding.progressBar.visibility = View.GONE
+                    binding.mprogressBar.visibility = View.GONE
                 }
             }
         }

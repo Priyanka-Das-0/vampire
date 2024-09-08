@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
 import com.example.beready.R
@@ -53,15 +54,15 @@ class ProfileActivity : AppCompatActivity() {
                         val name = snapshot.child("name").value.toString()
                         val college = snapshot.child("clgName").value.toString()
                         val cgpa = snapshot.child("cgpa").value.toString()
-                        val internship = snapshot.child("internship").value.toString()
-                        val badges = snapshot.child("badge").children.map { it.value.toString() }
+                        val internship = snapshot.child("internship").children.map { it.value.toString() }
+                        val badges = snapshot.child("badges").children.map { it.value.toString() }
                         val skillsList = snapshot.child("skill").children.map { it.value.toString() }
 
-                        tvName.text = "Name: $name"
+                        tvName.text = " $name"
                         tvEmail.text = "College: $college"
                         tvDomain.text = "CGPA: $cgpa"
-                        tvEducation.text = "Internship: $internship"
-                        tvExperience.text = "Badges: ${badges.joinToString(", ")}"
+                        tvEducation.text = "Internship:\n* ${internship.joinToString("\n*")}"
+                        tvExperience.text = "Badges:\n ${badges.joinToString(", ")}"
                         tvSkills.text = "Skills:\n*${skillsList.joinToString("\n*")}"
                     }
                 }
@@ -77,6 +78,24 @@ class ProfileActivity : AppCompatActivity() {
             val intent = Intent(this@ProfileActivity, res::class.java)
             startActivity(intent)
         }
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Custom behavior for back button press
+                super.handleOnBackCancelled()
+            }
+        })
+        val onBackPressed = object : OnBackPressedCallback(true) {
+            @OptIn(ExperimentalBadgeUtils::class)
+            override fun handleOnBackPressed() {
+                // Optional: You might want to finish the current activity
+                // so that it doesn't remain in the back stack
+                finish()
+
+                // Navigate to the desired activity
+                startActivity(Intent(this@ProfileActivity, homepage::class.java))
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, onBackPressed)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

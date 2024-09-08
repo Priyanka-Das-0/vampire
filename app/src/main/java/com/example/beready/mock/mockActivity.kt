@@ -1,13 +1,15 @@
-package com.example.beready.quiz
+package com.example.beready.mock
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.OptIn
@@ -22,10 +24,10 @@ import com.google.android.material.badge.ExperimentalBadgeUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-class QuizActivity : AppCompatActivity(), View.OnClickListener {
+class mockActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityQuizBinding
-    private lateinit var subCategory: SubCategoryModel
+    private lateinit var subCategory: subTopic
     private lateinit var quizTitle: String
     private var quizTime: Int = 0
     private lateinit var database: DatabaseReference
@@ -33,7 +35,6 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
     private var currentQuestionIndex = 0
     private var selectedAnswer = ""
     private var score = 0
-    lateinit var imageView: ImageView
     var Profile = profile()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +50,11 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
 
         // Set up button listeners
         binding.apply {
-            btn0.setOnClickListener(this@QuizActivity)
-            btn1.setOnClickListener(this@QuizActivity)
-            btn2.setOnClickListener(this@QuizActivity)
-            btn3.setOnClickListener(this@QuizActivity)
-            nextBtn.setOnClickListener(this@QuizActivity)
+            btn0.setOnClickListener(this@mockActivity)
+            btn1.setOnClickListener(this@mockActivity)
+            btn2.setOnClickListener(this@mockActivity)
+            btn3.setOnClickListener(this@mockActivity)
+            nextBtn.setOnClickListener(this@mockActivity)
         }
 
         loadQuestions()
@@ -66,7 +67,7 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
 
                 // Navigate to the desired activity
-                startActivity(Intent(this@QuizActivity, homepage::class.java))
+                startActivity(Intent(this@mockActivity, homepage::class.java))
             }
         }
     }
@@ -144,87 +145,77 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
 
             if (percentage > 60) {
                 val user = auth.currentUser
-                if (user != null) {
-                    val userEmail = user.email
-                    val emailKey = userEmail!!.replace(".", "_")
-
-                    // Determine badge to add
-                    val badgeToAdd = when(subCategory.setTitle) {
-                        "Set1" -> "Silver Badge"
-                        "Set2" -> "Gold Badge"
-                        else -> "Platinum Badge"
-                    }
-
-                    // Reference to Firebase
+                user?.let {
+                    val userEmail = user.email!!.replace(".", "_")
                     database = FirebaseDatabase.getInstance().getReference("Users")
-                    database.child(emailKey).child("badges").addListenerForSingleValueEvent(object :
+                    database.child(userEmail).child("coin").addListenerForSingleValueEvent(object :
                         ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            val currentBadges = mutableListOf<String>()
-
-                            // Retrieve existing badges
-                            for (badgeSnapshot in snapshot.children) {
-                                val badge = badgeSnapshot.getValue(String::class.java)
-                                if (badge != null) {
-                                    currentBadges.add(badge)
+                            val coin = snapshot.getValue(Int::class.java) ?: 0
+                            database.child(userEmail).child("coin").setValue(coin + 10)
+                                .addOnSuccessListener {
+                                    // Coin update success
                                 }
-                            }
-
-                            // Add new badge if it doesn't exist
-                            if (!currentBadges.contains(badgeToAdd)) {
-                                currentBadges.add(badgeToAdd)
-
-                                // Update badges in Firebase
-                                database.child(emailKey).child("badges").setValue(currentBadges)
-                                    .addOnSuccessListener {
-                                        Toast.makeText(
-                                            this@QuizActivity,
-                                            "Badge updated successfully",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                    .addOnFailureListener {
-                                        Toast.makeText(
-                                            this@QuizActivity,
-                                            "Failed to update badge",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                            }
+                                .addOnFailureListener {
+                                    Toast.makeText(this@mockActivity, "Failed to update coin", Toast.LENGTH_SHORT).show()
+                                }
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                            Toast.makeText(
-                                this@QuizActivity,
-                                "Error: ${error.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Log.e("FirebaseError", "Error: ${error.message}")
                         }
                     })
-                }
-
-                // Display badge in the dialog
-                when (subCategory.setTitle) {
-                    "Set1" -> dialogBinding.badge.setImageResource(R.drawable.silver)
-                    "Set2" -> dialogBinding.badge.setImageResource(R.drawable.gold)
-                    else -> dialogBinding.badge.setImageResource(R.drawable.platinum)
                 }
                 scoreTitle.text = "Congrats! You have passed"
                 scoreTitle.setTextColor(Color.BLUE)
             } else {
                 scoreTitle.text = "Oops! You have failed"
                 scoreTitle.setTextColor(Color.RED)
-            }
+                doc.text = "Click here"
 
+                // Fetch the documentation link by iterating through subCategories
+                database = FirebaseDatabase.getInstance().getReference("Mock/Mock")
+
+                database.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.children.forEach { mockChildSnapshot ->
+                            mockChildSnapshot.child("subCategories").children.forEach { subCategorySnapshot ->
+                                val subCat = subCategorySnapshot.getValue(subTopic::class.java)
+                                if (subCat?.setTitle == subCategory.setTitle) {
+                                    doc.setOnClickListener {
+                                        openDocumentationLink(subCat.documentationLink)
+                                    }
+                                    return
+                                }
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("FirebaseError", "Error: ${error.message}")
+                    }
+                })
+            }
             scoreSubtitle.text = "$score out of $totalQuestions are correct"
             finishBtn.setOnClickListener {
                 finish()
             }
         }
 
-        AlertDialog.Builder(this)
+        AlertDialog.Builder(this@mockActivity)
             .setView(dialogBinding.root)
             .setCancelable(false)
             .show()
     }
+
+    private fun openDocumentationLink(url: String?) {
+        Log.d("DocumentationLink", "Opening URL: $url")  // Log URL for debugging
+        if (url.isNullOrEmpty()) {
+            Toast.makeText(this, "No documentation link available.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
+
 }

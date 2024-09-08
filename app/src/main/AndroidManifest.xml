@@ -43,6 +43,19 @@
             android:exported="true">
 
         </activity>
+
+        <activity android:name=".mock.mock"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".mock.subTopicActivity"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".mock.mockActivity"
+            android:exported="true">
+
+        </activity>
         <activity android:name=".quiz.SubCategoryActivity"
             android:exported="true">
 
@@ -52,7 +65,7 @@
             android:exported="true">
 
         </activity>
-        <activity android:name=".Resume"
+        <activity android:name=".resume.Resume"
             android:exported="true">
 
         </activity>

@@ -2,6 +2,7 @@ package com.example.beready.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -14,7 +15,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class res : AppCompatActivity() {
-
+    var coinn:Int=0
     private val binding: Res1Binding by lazy {
         Res1Binding.inflate(layoutInflater)
     }
@@ -47,12 +48,7 @@ class res : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        binding.apply {
-            next1.setOnClickListener {
-                Profile.cgpa = cgpa.text.toString().trim().toFloat()
-                Profile.year = year.text.toString().trim().toInt()
-            }
-        }
+
 
         // Set up skills addition
         skillsContainer = findViewById(R.id.buttonSubmit)
@@ -74,26 +70,64 @@ class res : AppCompatActivity() {
 
             // Save Profile in Firebase Realtime Database using updateChildren to avoid overwriting
             database = FirebaseDatabase.getInstance().getReference("Users")
+            binding.apply {
             binding.next1.setOnClickListener {
+                val cgpaText = cgpa.text.toString().trim()
+                val yearText = year.text.toString().trim()
+
+                Log.d("ProfileUpdate", "CGPA Input: $cgpaText, Year Input: $yearText")
+
+                // Check if the cgpa field is not empty and can be converted to a float
+                if (cgpaText.isNotEmpty()) {
+                    val parsedCgpa = cgpaText.toFloatOrNull()
+                    if (parsedCgpa != null) {
+                        Profile.cgpa = parsedCgpa
+                    } else {
+                        Log.e("ProfileUpdate", "Invalid CGPA input: $cgpaText")
+                        Profile.cgpa = 0.0f // Or handle this differently
+                    }
+                } else {
+                    Log.w("ProfileUpdate", "CGPA field is empty, defaulting to 0.0f")
+                    Profile.cgpa = 0.0f
+                }
+                        Profile.coin = coinn
+                if (yearText.isNotEmpty()) {
+                    val parsedYear = yearText.toIntOrNull()
+                    if (parsedYear != null) {
+                        Profile.year = parsedYear
+                    } else {
+                        Log.e("ProfileUpdate", "Invalid Year input: $yearText")
+                        Profile.year = 0 // Or handle this differently
+                    }
+                } else {
+                    Log.w("ProfileUpdate", "Year field is empty, defaulting to 0")
+                    Profile.year = 0
+                }
+
+                // Debugging log to check the final values before saving to Firebase
+                Log.d("ProfileUpdate", "Final CGPA: ${Profile.cgpa}, Final Year: ${Profile.year}")
+
                 val updates = mapOf(
-                    "cgpa" to Profile.cgpa,
-                    "year" to Profile.year,
+                    "cgpa" to (Profile.cgpa ?: 0),
+                    "year" to (Profile.year ?: 0),
                     "skill" to Profile.skill,
                     "internship" to Profile.internship,
                     "projects" to Profile.projects,
-                    "projectlink" to Profile.projectlink
+                    "projectlink" to Profile.projectlink,
+                    "coin" to Profile.coin
                 )
-                database.child(emailKey).updateChildren(updates)
+               database.child(emailKey).updateChildren(updates)
                     .addOnSuccessListener {
                         Toast.makeText(this@res, "Profile updated", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@res, ProfileActivity::class.java))
                         finish()
                     }
                     .addOnFailureListener {
-                        Toast.makeText(this, "Failed to save profile", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@res, "Failed to save profile", Toast.LENGTH_SHORT).show()
                     }
             }
         }
+    }
     }
 
     private fun addSkill() {
@@ -102,6 +136,7 @@ class res : AppCompatActivity() {
             skills.add(skill)
             Profile.skill = skills
             skillCount++
+            coinn+=10
             skillsContainer.text.clear()
             skillsContainer.hint = "Skill $skillCount"
             Toast.makeText(this, "Skill added: $skill", Toast.LENGTH_SHORT).show()
@@ -116,6 +151,7 @@ class res : AppCompatActivity() {
             internships.add(internship)
             Profile.internship = internships
             intCount++
+            coinn+=10
             intContainer.text.clear()
             intContainer.hint = "Internship $intCount"
             Toast.makeText(this, "Internship added: $internship", Toast.LENGTH_SHORT).show()
@@ -131,6 +167,7 @@ class res : AppCompatActivity() {
             projects.add(project)
             Profile.projects = projects
             projectCount++
+            coinn+=10
             projectContainer.text.clear()
             projectContainer.hint = "Project $projectCount"
             Toast.makeText(this, "Project added: $project", Toast.LENGTH_SHORT).show()

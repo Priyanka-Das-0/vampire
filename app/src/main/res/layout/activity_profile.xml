@@ -12,9 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_marginBottom="15dp"
-        android:textSize="18sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="College:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_marginBottom="15dp"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:text="CGPA:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="8dp"/>
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:text="Internships:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="8dp"/>
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Badges:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_marginBottom="15dp"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Skills:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="8dp"/>

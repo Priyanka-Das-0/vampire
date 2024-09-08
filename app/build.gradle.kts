@@ -36,6 +36,7 @@ android {
     }
     buildFeatures{
         viewBinding=true
+        mlModelBinding = true
     }
 }
 
@@ -49,10 +50,16 @@ dependencies {
     implementation("com.google.firebase:firebase-database:21.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.google.firebase:firebase-storage:21.0.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.1")
     implementation("com.itextpdf:itext7-core:7.2.6")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
